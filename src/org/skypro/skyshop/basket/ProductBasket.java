@@ -75,6 +75,7 @@ public class ProductBasket {
     public void cleanBasket() {
         for (int i = 0; i < products.length; i++) {
             products[i] = null;
+            size = 0;
         }
         System.out.println("Корзина очищена!");
     }

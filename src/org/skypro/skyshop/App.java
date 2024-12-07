@@ -12,12 +12,13 @@ public class App {
         productBasket.addProduct("apples", 450);
         productBasket.addProduct("sausage", 1500);
 
-        //Добавить продукт в корзину, в которой уже нет места
-        productBasket.addProduct("oil", 300);
-
         //Печать списка товаров и общей стоимости
         productBasket.printAllProducts();
         productBasket.printSumPrice();
+        System.out.println("");
+
+        //Добавить продукт в корзину, в которой уже нет места
+        productBasket.addProduct("oil", 300);
         System.out.println("");
 
         //Поиск товара, который есть в корзине
@@ -33,6 +34,7 @@ public class App {
 
         //Печать содержимого пустой корзины
         productBasket.printAllProducts();
+        System.out.println("");
 
         //Поиск товара в пустой корзине
         System.out.println(productBasket.findProduct("shampoo"));
