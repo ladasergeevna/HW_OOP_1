@@ -1,6 +1,9 @@
 package org.skypro.skyshop.basket;
 
+import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
 
 public class ProductBasket {
     private final Product[] products;
@@ -25,10 +28,28 @@ public class ProductBasket {
             System.out.println("Невозможно добавить продукт. Корзина уже полная");
             return;
         }
-        Product newProduct = new Product(name, price);
+        Product newProduct = new SimpleProduct(name,price);
         products[size++] = newProduct;
     }
 
+    public void addDiscountedProduct(String name, int basePrice, int discount) {
+        int i = findSpace();
+        if (i == -1) {
+            System.out.println("Невозможно добавить продукт. Корзина уже полная");
+            return;
+        }
+        Product newProduct = new DiscountedProduct(name,basePrice, discount);
+        products[size++] = newProduct;
+    }
+    public void addFixPriceProduct(String name) {
+        int i = findSpace();
+        if (i == -1) {
+            System.out.println("Невозможно добавить продукт. Корзина уже полная");
+            return;
+        }
+        Product newProduct = new FixPriceProduct(name);
+        products[size++] = newProduct;
+    }
 
     public float getSumPrice() {
         int totalPrice = 0;
@@ -54,7 +75,7 @@ public class ProductBasket {
 
                 break;
             }
-            System.out.println(products[i].getName() + ": " + products[i].getPrice());
+            System.out.println( products[i].toString());
         }
     }
 
@@ -79,4 +100,7 @@ public class ProductBasket {
         }
         System.out.println("Корзина очищена!");
     }
+
+
+
 }
