@@ -2,17 +2,19 @@ package org.skypro.skyshop;
 
 import org.skypro.skyshop.basket.ProductBasket;
 import org.skypro.skyshop.product.DiscountedProduct;
+import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
+import org.skypro.skyshop.product.SimpleProduct;
 
 public class App {
     public static void main(String[] args) {
         ProductBasket productBasket = new ProductBasket();
         // Добавить продукты в корзину
-        productBasket.addProduct("яйца", 300);
-        productBasket.addProduct("молоко", 100);
-        productBasket.addFixPriceProduct("батон");
-        productBasket.addDiscountedProduct("яблоки", 100,5);
-        productBasket.addDiscountedProduct("сосиски", 1000,10);
+        productBasket.addProduct(new SimpleProduct("яйца",300));
+        productBasket.addProduct(new SimpleProduct("молоко",300));
+        productBasket.addProduct(new FixPriceProduct("батон"));
+        productBasket.addProduct(new DiscountedProduct("яблоки", 100,5));
+        productBasket.addProduct(new DiscountedProduct("сосиски", 1000,10));
 
         //Печать списка товаров и общей стоимости
         productBasket.printAllProducts();
@@ -22,7 +24,7 @@ public class App {
         System.out.println("");
 
         //Добавить продукт в корзину, в которой уже нет места
-        productBasket.addProduct("oil", 300);
+        productBasket.addProduct(new SimpleProduct("масло",300));
         System.out.println("");
 
         //Поиск товара, который есть в корзине

@@ -22,32 +22,12 @@ public class ProductBasket {
         return -1;
     }
 
-    public void addProduct(String name, int price) {
+    public void addProduct(Product newProduct) {
         int i = findSpace();
         if (i == -1) {
             System.out.println("Невозможно добавить продукт. Корзина уже полная");
             return;
         }
-        Product newProduct = new SimpleProduct(name,price);
-        products[size++] = newProduct;
-    }
-
-    public void addDiscountedProduct(String name, int basePrice, int discount) {
-        int i = findSpace();
-        if (i == -1) {
-            System.out.println("Невозможно добавить продукт. Корзина уже полная");
-            return;
-        }
-        Product newProduct = new DiscountedProduct(name,basePrice, discount);
-        products[size++] = newProduct;
-    }
-    public void addFixPriceProduct(String name) {
-        int i = findSpace();
-        if (i == -1) {
-            System.out.println("Невозможно добавить продукт. Корзина уже полная");
-            return;
-        }
-        Product newProduct = new FixPriceProduct(name);
         products[size++] = newProduct;
     }
 
