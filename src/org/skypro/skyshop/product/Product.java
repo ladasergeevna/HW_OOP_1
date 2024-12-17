@@ -1,7 +1,6 @@
 package org.skypro.skyshop.product;
 
 public abstract class Product {
-    public static int AMOUNT_SPECIAL_PRODUCT = 0;
     private String name;
 
     public Product(String name) {
