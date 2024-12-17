@@ -19,7 +19,7 @@ public class App {
         //Печать списка товаров и общей стоимости
         productBasket.printAllProducts();
         productBasket.printSumPrice();
-        System.out.println("Специальных товаров: " + DiscountedProduct.AMOUNT_SPECIAL_PRODUCT);
+        System.out.println("Специальных товаров: " + productBasket.getAmountOfSpecialProducts());
 
         System.out.println("");
 
