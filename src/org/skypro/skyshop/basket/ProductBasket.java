@@ -55,7 +55,7 @@ public class ProductBasket {
 
                 break;
             }
-            System.out.println( products[i].toString());
+            System.out.println(products[i].toString());
         }
     }
 
@@ -80,13 +80,15 @@ public class ProductBasket {
         }
         System.out.println("Корзина очищена!");
     }
-    public int getAmountOfSpecialProducts(){
+
+    public int getAmountOfSpecialProducts() {
         int amount = 0;
         for (Product product : products) {
             if (product != null && product.isSpecial()) {
                 amount++;
             }
-        } return amount;
+        }
+        return amount;
     }
 
 
