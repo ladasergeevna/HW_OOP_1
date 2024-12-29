@@ -62,17 +62,49 @@ public class App {
         //Добавление статей в SearchEngine
         Article dressArticle = new Article("Инфо о платье", "Платье зеленое 42 размера");
         Article sweetArticle = new Article("Инфо о конфетах", "Конфеты из молочного шоколада в подарочной коробке");
+        Article chocolateArticle = new Article("Инфо о конфетах", "Конфеты из молочного шоколада с начинкой из шоколада");
         Article lollipopArticle = new Article("Инфо о леденцах", "Конфеты леденцовые");
 
         searchEngine.addSearchable(sweetArticle);
         searchEngine.addSearchable(dressArticle);
         searchEngine.addSearchable(lollipopArticle);
+        searchEngine.addSearchable(chocolateArticle);
 
         //Поиск товаров и статей по ключевым словам
         System.out.println(Arrays.toString(searchEngine.search("Конфеты")));
         System.out.println(Arrays.toString(searchEngine.search("Ролики")));
         System.out.println(Arrays.toString(searchEngine.search("Крем")));
         System.out.println(Arrays.toString(searchEngine.search("Платье")));
+        System.out.println();
+
+        //Товары с ошибочно заполненными данными
+        try {
+            Product blank = new SimpleProduct("", 3000);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Имя товара не может быть пустым");
+        }
+        try {
+            Product secondHand = new SimpleProduct("Бесплатный товар", 0);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Цена должна быть больше нуля");
+        }
+        try {
+            Product jaket = new DiscountedProduct("Куртка", 5000, 500);
+        } catch (IllegalArgumentException e) {
+            System.out.println("Размер скидки должен быть в диапазоне 0-100");
+        }
+        System.out.println();
+
+        //Поиск наиболее подходящего элемента по ключевым словам
+        String search1 = "шоколад";
+        String search2 = "фрукт";
+
+        System.out.println(searchEngine.findBestResult(search1));
+        try {
+            System.out.println(searchEngine.findBestResult(search2));
+        } catch (BestResultNotFound e) {
+            System.out.println("Товар '" + search2 + "' не найден!");
+        }
 
     }
 }

@@ -1,5 +1,6 @@
 package org.skypro.skyshop.search;
 
+import org.skypro.skyshop.BestResultNotFound;
 import org.skypro.skyshop.searchable.Searchable;
 
 public class SearchEngine {
@@ -49,5 +50,32 @@ public class SearchEngine {
             addSearchable(searchable);
         }
     }
+
+    public Searchable findBestResult(String search) {
+        int maxScore = 0;
+        Searchable bestResult = null;
+        for (Searchable searchable : searchables) {
+            if (searchable != null) {
+                int score = countOccurrences(searchable.getSearchTerm(), search);
+                if (score > maxScore) {
+                    maxScore = score;
+                    bestResult = searchable;
+                }
+            }
+
+        }
+        if (maxScore == 0){
+            throw new BestResultNotFound("Товар '" + search + "' не найден!");
+        }
+        return bestResult;
+    }
+    public int countOccurrences(String str, String substr) {
+        int count = 0;
+        for (int index = 0; (index = str.indexOf(substr, index)) != -1; index += substr.length()) {
+            count++;
+        }
+        return count;
+    }
+
 
 }
