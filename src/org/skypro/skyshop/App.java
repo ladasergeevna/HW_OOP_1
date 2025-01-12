@@ -8,7 +8,10 @@ import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.article.Article;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Arrays;
+import java.util.LinkedList;
 
 public class App {
     public static void main(String[] args) {
@@ -29,35 +32,51 @@ public class App {
         productBasket.printAllProducts();
         productBasket.printSumPrice();
         System.out.println("Специальных товаров: " + productBasket.getAmountOfSpecialProducts());
-
-        System.out.println("");
+        System.out.println();
 
         //Добавить продукт в корзину, в которой уже нет места
-        productBasket.addProduct(new SimpleProduct("масло", 300));
-        System.out.println("");
+        productBasket.addProduct(new SimpleProduct("Масло", 300));
+        Product dress1 = new DiscountedProduct("Платье", 4000, 70);
+        productBasket.addProduct(dress1);
 
         //Поиск товара, который есть в корзине
-        System.out.println(productBasket.findProduct("молоко"));
-        System.out.println("");
+        System.out.println(productBasket.findProduct("Платье"));
+        System.out.println();
 
         //Поиск товара, которого нет в корзине
         System.out.println(productBasket.findProduct("cheese"));
-        System.out.println("");
+        System.out.println();
+
+        //Удаление существующего товара по имени, печать удаленных продуктов и содержимого корзины после удаления
+        System.out.println("Список удаленных товаров: " + productBasket.removeProduct("Платье"));
+        System.out.println("Текущий список товаров в корзине:");
+        productBasket.printAllProducts();
+        System.out.println();
+
+        //Удаление несуществующего товара по имени, печать удаленных продуктов и содержимого корзины после удаления
+        try {
+            productBasket.removeProduct("Крупа");
+        } catch (IllegalArgumentException e) {
+            System.out.println("Список удаленных товаров: пусто");
+        }
+        System.out.println("Текущий список товаров в корзине:");
+        productBasket.printAllProducts();
+        System.out.println();
 
         //Очистка корзины
         productBasket.cleanBasket();
 
         //Печать содержимого пустой корзины
         productBasket.printAllProducts();
-        System.out.println("");
+        System.out.println();
 
         //Поиск товара в пустой корзине
-        System.out.println(productBasket.findProduct("молоко"));
-        System.out.println("");
+        System.out.println(productBasket.findProduct("Платье"));
+        System.out.println();
 
         //Добавление в всех товаров в SearchEngine
         SearchEngine searchEngine = new SearchEngine(10);
-        searchEngine.addAll(dress, rollers, cream, sweets, lollipop);
+        searchEngine.addAll(dress, rollers, cream, sweets, lollipop, dress1);
 
         //Добавление статей в SearchEngine
         Article dressArticle = new Article("Инфо о платье", "Платье зеленое 42 размера");
@@ -71,10 +90,10 @@ public class App {
         searchEngine.addSearchable(chocolateArticle);
 
         //Поиск товаров и статей по ключевым словам
-        System.out.println(Arrays.toString(searchEngine.search("Конфеты")));
-        System.out.println(Arrays.toString(searchEngine.search("Ролики")));
-        System.out.println(Arrays.toString(searchEngine.search("Крем")));
-        System.out.println(Arrays.toString(searchEngine.search("Платье")));
+        System.out.println(searchEngine.search("Конфеты"));
+        System.out.println(searchEngine.search("Ролики"));
+        System.out.println(searchEngine.search("Крем"));
+        System.out.println(searchEngine.search("Платье"));
         System.out.println();
 
         //Товары с ошибочно заполненными данными
