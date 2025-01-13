@@ -10,15 +10,13 @@ import java.util.*;
 
 public class ProductBasket {
     private final LinkedList<Product> products;
-    private int size = 0;
 
     public ProductBasket() {
         this.products = new LinkedList<>();
     }
 
     public int getCountProducts() {
-        size = products.size();
-        return size;
+        return products.size();
     }
 
     public void addProduct(Product newProduct) {
@@ -52,9 +50,6 @@ public class ProductBasket {
         }
     }
     public boolean findProduct(String name) {
-        if (products == null) {
-            return false;
-        }
         for (Product product : products) {
             if (product.getName().equals(name)) {
                 return true;
@@ -64,7 +59,6 @@ public class ProductBasket {
     }
     public void cleanBasket() {
         products.clear();
-        size = 0;
         System.out.println("Корзина очищена!");
     }
 
@@ -87,9 +81,6 @@ public class ProductBasket {
                 removedList.add(nextProduct);
                 productIterator.remove();
             }
-        }
-        if (removedList.isEmpty() )  {
-            throw new IllegalArgumentException("Список пуст");
         }
         return removedList;
     }

@@ -54,11 +54,7 @@ public class App {
         System.out.println();
 
         //Удаление несуществующего товара по имени, печать удаленных продуктов и содержимого корзины после удаления
-        try {
-            productBasket.removeProduct("Крупа");
-        } catch (IllegalArgumentException e) {
-            System.out.println("Список удаленных товаров: пусто");
-        }
+        System.out.println("Список удаленных товаров: " + productBasket.removeProduct("Крупа"));
         System.out.println("Текущий список товаров в корзине:");
         productBasket.printAllProducts();
         System.out.println();
