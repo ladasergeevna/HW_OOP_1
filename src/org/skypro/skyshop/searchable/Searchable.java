@@ -10,4 +10,5 @@ public interface Searchable {
         return this.getClass().getSimpleName() + "-" + getSearchContentType();
     }
 
+
 }

@@ -4,15 +4,12 @@ import org.skypro.skyshop.BestResultNotFound;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.searchable.Searchable;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class SearchEngine {
     private final ArrayList<Searchable> searchables;
 
-    public SearchEngine(int size) {
+    public SearchEngine() {
         this.searchables = new ArrayList<>();
     }
 
@@ -29,13 +26,11 @@ public class SearchEngine {
         }
     }
 
-    public List<Searchable> search(String keyWord) {
-        Iterator<Searchable> searchableIterator = searchables.iterator();
-        List<Searchable> resultList = new LinkedList<>();
-        while (searchableIterator.hasNext()) {
-            Searchable nextSearchable = searchableIterator.next();
-            if (nextSearchable.getSearchTerm().contains(keyWord)) {
-                resultList.add(nextSearchable);
+    public Map<String, Searchable> search(String keyWord) {
+        Map<String, Searchable> resultList = new TreeMap<>();
+        for (Searchable searchable : searchables) {
+            if (searchable.getSearchTerm().contains(keyWord)) {
+                resultList.put(searchable.getSearchTerm(), searchable);
             }
         }
         return resultList;
@@ -67,3 +62,4 @@ public class SearchEngine {
         return count;
     }
 }
+

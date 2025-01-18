@@ -71,7 +71,7 @@ public class App {
         System.out.println();
 
         //Добавление в всех товаров в SearchEngine
-        SearchEngine searchEngine = new SearchEngine(10);
+        SearchEngine searchEngine = new SearchEngine();
         searchEngine.addAll(dress, rollers, cream, sweets, lollipop, dress1);
 
         //Добавление статей в SearchEngine
