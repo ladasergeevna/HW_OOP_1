@@ -19,7 +19,6 @@ public class ProductBasket {
         if (newProduct == null) {
             return;
         }
-        List<Product> products;
         productBasketMap.computeIfAbsent(newProduct.getName(), key -> new LinkedList<>()).add(newProduct);
     }
 
