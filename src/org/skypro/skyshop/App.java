@@ -75,13 +75,15 @@ public class App {
         searchEngine.addAll(dress, rollers, cream, sweets, lollipop, dress1);
 
         //Добавление статей в SearchEngine
-        Article dressArticle = new Article("Инфо о платье", "Платье зеленое 42 размера");
-        Article sweetArticle = new Article("Инфо о конфетах", "Конфеты из молочного шоколада в подарочной коробке");
+        Article dressGreenArticle = new Article("Инфо о зеленом платье", "Платье зеленое 42 размера");
+        Article dressRedArticle = new Article("Инфо о красном платье", "Платье красное 50 размера");
+        Article sweetArticle = new Article("Инфо о конфетах в упаковке","Конфеты из молочного шоколада в подарочной коробке");
         Article chocolateArticle = new Article("Инфо о конфетах", "Конфеты из молочного шоколада с начинкой из шоколада");
         Article lollipopArticle = new Article("Инфо о леденцах", "Конфеты леденцовые");
 
         searchEngine.addSearchable(sweetArticle);
-        searchEngine.addSearchable(dressArticle);
+        searchEngine.addSearchable(dressGreenArticle);
+        searchEngine.addSearchable(dressRedArticle);
         searchEngine.addSearchable(lollipopArticle);
         searchEngine.addSearchable(chocolateArticle);
 

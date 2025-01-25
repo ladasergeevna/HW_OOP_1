@@ -1,16 +1,17 @@
 package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.BestResultNotFound;
+import org.skypro.skyshop.SearchEngineComparator;
 import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.searchable.Searchable;
 
 import java.util.*;
 
 public class SearchEngine {
-    private final ArrayList<Searchable> searchables;
+    private final Set<Searchable> searchables;
 
     public SearchEngine() {
-        this.searchables = new ArrayList<>();
+        this.searchables = new HashSet<>();
     }
 
     public void addSearchable(Searchable newSearchable) {
@@ -21,16 +22,14 @@ public class SearchEngine {
     }
 
     public void addAll(Searchable... searchables) {
-        for (Searchable searchable : searchables) {
-            addSearchable(searchable);
-        }
+        Collections.addAll(this.searchables, searchables);
     }
 
-    public Map<String, Searchable> search(String keyWord) {
-        Map<String, Searchable> resultList = new TreeMap<>();
+    public Set<Searchable> search(String keyWord) {
+        Set<Searchable> resultList = new TreeSet<>(new SearchEngineComparator());
         for (Searchable searchable : searchables) {
             if (searchable.getSearchTerm().contains(keyWord)) {
-                resultList.put(searchable.getSearchTerm(), searchable);
+                resultList.add(searchable);
             }
         }
         return resultList;
