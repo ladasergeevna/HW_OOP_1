@@ -1,10 +1,6 @@
 package org.skypro.skyshop.basket;
 
-import org.skypro.skyshop.product.DiscountedProduct;
-import org.skypro.skyshop.product.FixPriceProduct;
 import org.skypro.skyshop.product.Product;
-import org.skypro.skyshop.product.SimpleProduct;
-import org.skypro.skyshop.searchable.Searchable;
 
 import java.util.*;
 
@@ -27,15 +23,9 @@ public class ProductBasket {
     }
 
     public float getSumPrice() {
-        int totalPrice = 0;
-        for (List<Product> products : productBasketMap.values()) {
-            for (Product product : products) {
-                if (product != null) {
-                    totalPrice += product.getPrice();
-                }
-            }
-        }
-        return totalPrice;
+        return productBasketMap.values().stream().flatMap(Collection::stream)
+                .mapToInt(Product::getPrice)
+                .sum();
     }
 
     public void printSumPrice() {
@@ -48,22 +38,13 @@ public class ProductBasket {
             System.out.println("В корзине пусто");
             return;
         }
-        for (List<Product> products : productBasketMap.values()) {
-            for (Product product : products) {
-                System.out.println(product);
-            }
-        }
+        productBasketMap.values().stream().flatMap(Collection::stream)
+                .forEach(product -> System.out.println(product));
     }
 
     public boolean findProduct(String name) {
-        for (List<Product> products : productBasketMap.values()) {
-            for (Product product : products) {
-                if (product.getName().equals(name)) {
-                    return true;
-                }
-            }
-        }
-        return false;
+        return productBasketMap.values().stream().flatMap(Collection::stream)
+                .anyMatch(product -> product.getName().equals(name));
     }
 
     public void cleanBasket() {
@@ -71,16 +52,10 @@ public class ProductBasket {
         System.out.println("Корзина очищена!");
     }
 
-    public int getAmountOfSpecialProducts() {
-        int amount = 0;
-        for (List<Product> products : productBasketMap.values()) {
-            for (Product product : products) {
-                if (product != null && product.isSpecial()) {
-                    amount++;
-                }
-            }
-        }
-        return amount;
+    public long getAmountOfSpecialProducts() {
+        return productBasketMap.values().stream().flatMap(Collection::stream)
+                .filter(product -> product.isSpecial())
+                .count();
     }
 
     public List<Product> removeProduct(String name) {
@@ -89,7 +64,6 @@ public class ProductBasket {
         } else {
             return Collections.emptyList();
         }
-
     }
 
 }

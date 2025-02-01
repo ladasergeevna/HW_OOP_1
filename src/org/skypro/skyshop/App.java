@@ -8,10 +8,6 @@ import org.skypro.skyshop.product.SimpleProduct;
 import org.skypro.skyshop.search.SearchEngine;
 import org.skypro.skyshop.article.Article;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Arrays;
-import java.util.LinkedList;
 
 public class App {
     public static void main(String[] args) {
@@ -77,7 +73,7 @@ public class App {
         //Добавление статей в SearchEngine
         Article dressGreenArticle = new Article("Инфо о зеленом платье", "Платье зеленое 42 размера");
         Article dressRedArticle = new Article("Инфо о красном платье", "Платье красное 50 размера");
-        Article sweetArticle = new Article("Инфо о конфетах в упаковке","Конфеты из молочного шоколада в подарочной коробке");
+        Article sweetArticle = new Article("Инфо о конфетах в упаковке", "Конфеты из молочного шоколада в подарочной коробке");
         Article chocolateArticle = new Article("Инфо о конфетах", "Конфеты из молочного шоколада с начинкой из шоколада");
         Article lollipopArticle = new Article("Инфо о леденцах", "Конфеты леденцовые");
 
