@@ -2,10 +2,12 @@ package org.skypro.skyshop.search;
 
 import org.skypro.skyshop.BestResultNotFound;
 import org.skypro.skyshop.SearchEngineComparator;
-import org.skypro.skyshop.product.Product;
 import org.skypro.skyshop.searchable.Searchable;
 
 import java.util.*;
+import java.util.function.Supplier;
+import java.util.stream.Collectors;
+
 
 public class SearchEngine {
     private final Set<Searchable> searchables;
@@ -26,13 +28,10 @@ public class SearchEngine {
     }
 
     public Set<Searchable> search(String keyWord) {
-        Set<Searchable> resultList = new TreeSet<>(new SearchEngineComparator());
-        for (Searchable searchable : searchables) {
-            if (searchable.getSearchTerm().contains(keyWord)) {
-                resultList.add(searchable);
-            }
-        }
-        return resultList;
+        Supplier<Set<Searchable>> resultList = () -> new TreeSet<>(new SearchEngineComparator());
+        return searchables.stream()
+                .filter(searchable -> searchable.getSearchTerm().contains(keyWord))
+                .collect(Collectors.toCollection(resultList));
     }
 
     public Searchable findBestResult(String search) {
